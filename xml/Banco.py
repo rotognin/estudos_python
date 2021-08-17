@@ -7,20 +7,22 @@ class Banco():
 
     def createTable(self):
         conn = self.conexao.cursor()
-        conn.execute("""create table if not exists 99vidas_tb(
-                        99v_id integer primary key autoincrement,
-                        99v_titulo text,
-                        99v_arquivo text,
-                        99v_datahora text)""")
+        conn.execute("""create table if not exists cast99vidas_tb(
+                        v99_id integer primary key autoincrement,
+                        v99_titulo text,
+                        v99_arquivo text,
+                        v99_datahora text)""")
         self.conexao.commit()
         conn.close()
 
-    def insertEpisodio(self, conn, titulo, arquivo, datahora):
+    def insertEpisodio(self, titulo, arquivo, datahora):
         try:
-            sSql = 'INSERT INTO 99vidas_tb (99v_titulo, 99v_arquivo, 99v_datahora)'
+            cursor = self.conexao.cursor()
+            sSql = 'INSERT INTO cast99vidas_tb (v99_titulo, v99_arquivo, v99_datahora)'
             sSql = sSql + ' VALUES ('
             sSql = sSql + '"' + titulo + '", "' + arquivo + '", "' + datahora + '");'
-            conn.execute(sSql)
+            cursor.execute(sSql)
+            self.conexao.commit()
             
             return True
         except:

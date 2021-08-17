@@ -38,17 +38,17 @@ channel = xRoot[0]
 
 # Abrir uma conexão com o banco
 banco = Banco()
-conn = banco.conexao.cursor()
+#conn = banco.conexao.cursor()
 
 for xItem in channel.iter('item'):
     xTitle = xItem.find('title')
     xEnclosure = xItem.find('enclosure')
     xData = xItem.find('pubDate')
 
-    banco.insertEpisodio(conn, xTitle.text, xEnclosure.text, xData.text)
+    banco.insertEpisodio(xTitle.text, xEnclosure.attrib['url'], xData.text)
 
     #print(xEnclosure.attrib['url'])
     #print (xTitle.text)
 
-banco.conexao.commit()
-conn.close()
+#banco.conexao.commit()
+banco.conexao.close()
