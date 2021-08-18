@@ -1,2 +1,3 @@
 # Arquivos e pastas que não ião subir para o repositório
 dist/
+.vscode/

@@ -8,9 +8,6 @@ import time
 import sys
 from Banco import Banco
 
-# Importar esse XML para a leitura, caso o XML ainda não exista
-# http://99vidas.com.br/99vidas.xml
-
 sArqXml = 'arquivo.xml'
 sURL = 'http://99vidas.com.br/99vidas.xml'
 
@@ -36,9 +33,7 @@ if (len(xRoot) == 0):
 
 channel = xRoot[0]
 
-# Abrir uma conexão com o banco
 banco = Banco()
-#conn = banco.conexao.cursor()
 
 for xItem in channel.iter('item'):
     xTitle = xItem.find('title')
@@ -47,8 +42,4 @@ for xItem in channel.iter('item'):
 
     banco.insertEpisodio(xTitle.text, xEnclosure.attrib['url'], xData.text)
 
-    #print(xEnclosure.attrib['url'])
-    #print (xTitle.text)
-
-#banco.conexao.commit()
 banco.conexao.close()
