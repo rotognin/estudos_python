@@ -8,28 +8,44 @@ class Application:
     def __init__(self, master = None):
         self.quadro = Frame(master, pady = 10, padx = 10)
         
+        self.frmInfo = Frame(self.quadro)
         # Nome
-        self.lblNome = Label(self.quadro, text = 'Nome:')
-        self.entNome = Entry(self.quadro, width = 50)
+        self.lblNome = Label(self.frmInfo, text = 'Nome:')
+        self.entNome = Entry(self.frmInfo, width = 50)
         # Endereço
-        self.lblEndereco = Label(self.quadro, text = 'Endereço:')
-        self.entEndereco = Entry(self.quadro, width = 50)
-        # Botão "Adicionar"
-        self.btnAdicionar = Button(self.quadro, text = 'Adicionar', width = 10, command = self.adicionarInfo)
+        self.lblEndereco = Label(self.frmInfo, text = 'Endereço:')
+        self.entEndereco = Entry(self.frmInfo, width = 50)
+
+        # Botões
+        self.frmBotoes = Frame(self.quadro)
+        self.btnAdicionar = Button(self.frmBotoes, text = 'Adicionar', width = 9, command = self.adicionarInfo)
+        self.btnExcluir = Button(self.frmBotoes, text = 'Excluir', width = 9, command = self.excluirInfo)
+        self.btnLimpar = Button(self.frmBotoes, text = 'Limpar', width = 9, command = self.limparInfo)
+
         # ListBox
-        self.lbxLista = Listbox(self.quadro, selectbackground = 'blue', selectmode = SINGLE, width = 40)
-        #self.lbxLista.insert(1, ('Rodrigo Tognin', 'João Henrique'))
-        #self.lbxLista.insert(2, 'Tatiane da Silva')
+        self.frmLista = Frame(self.quadro)
+        self.lbxLista = Listbox(self.frmLista, selectbackground = 'blue', selectmode = SINGLE, width = 100)
         #self.btnSair = Button(self.quadro, text = 'Sair', width = 10, command = self.quadro.quit)
 
     def criarTela(self):
+        self.frmInfo.grid(row = 0, column = 0)
         self.quadro.grid(row = 0, column = 0)
         self.lblNome.grid(row = 0, column = 0, sticky = W) # Alinhado à esquerda (E = à direita)
-        self.entNome.grid(row = 0, column = 1)
+        self.entNome.grid(row = 0, column = 1, sticky = W)
         self.lblEndereco.grid(row = 1, column = 0, sticky = W)
-        self.entEndereco.grid(row = 1, column  = 1)
-        self.btnAdicionar.grid(row = 2, column = 0, sticky = W)
-        self.lbxLista.grid(row = 3, column = 0, columnspan = 2, sticky = W, pady = 5)
+        self.entEndereco.grid(row = 1, column  = 1, sticky = W)
+
+        self.frmBotoes.grid(row = 2, column = 0, sticky = 'nsew', padx = 5, pady = 5)
+        self.btnAdicionar.pack(side = 'left', padx = 5)
+        self.btnLimpar.pack(side = 'left', padx = 5)
+        self.btnExcluir.pack(side = 'left', padx = 5)
+
+        #self.btnAdicionar.grid(row = 2, column = 0, sticky = W, pady = 5)
+        #self.btnLimpar.grid(row = 2, column = 1, sticky = W, padx = 5)
+        #self.btnExcluir.grid(row = 2, column = 1, sticky = W)
+
+        self.frmLista.grid(row = 3, column = 0, columnspan = 3)
+        self.lbxLista.pack() # grid(row = 0, column = 0, sticky = E, pady = 5)
         self.entNome.focus_set()
 
         #self.btnSair.grid(row = 2, column = 2)
@@ -45,6 +61,13 @@ class Application:
 
         self.lbxLista.insert(END, self.entNome.get() + ' - ' + self.entEndereco.get())
         self.limparCampos()
+
+    def limparInfo(self):
+        self.lbxLista.delete(0, END)
+        self.entNome.focus_set()
+
+    def excluirInfo(self):
+        pass # A ser desenvolvido...
 
     def limparCampos(self):
         self.entNome.delete(0, END)
