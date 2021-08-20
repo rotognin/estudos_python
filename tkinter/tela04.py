@@ -24,7 +24,7 @@ class Application:
 
         # ListBox
         self.frmLista = Frame(self.quadro)
-        self.lbxLista = Listbox(self.frmLista, selectbackground = 'blue', selectmode = SINGLE, width = 100)
+        self.lbxLista = Listbox(self.frmLista, selectbackground = 'blue', selectmode = SINGLE, width = 100, activestyle = 'none')
         #self.btnSair = Button(self.quadro, text = 'Sair', width = 10, command = self.quadro.quit)
 
     def criarTela(self):
@@ -46,6 +46,9 @@ class Application:
 
         self.frmLista.grid(row = 3, column = 0, columnspan = 3)
         self.lbxLista.pack() # grid(row = 0, column = 0, sticky = E, pady = 5)
+        self.lbxLista.bind('<<ListboxSelect>>', self.itemSelecionado)
+
+
         self.entNome.focus_set()
 
         #self.btnSair.grid(row = 2, column = 2)
@@ -78,6 +81,11 @@ class Application:
         self.entNome.delete(0, END)
         self.entEndereco.delete(0, END)
         self.entNome.focus_set()
+
+    def itemSelecionado(self, event):
+        iIndex = self.lbxLista.curselection()
+        if (not iIndex == ()):
+            messagebox.showinfo('Selecionado', self.lbxLista.get(iIndex))
 
 
 
