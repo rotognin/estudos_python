@@ -10,7 +10,7 @@ print(type(fExcel))
 # Data, KM, Combustível, Valor/Litro, Valor Abastecido, Litros, KM Rodado, 
 # Rodado/Litro, Dias, KM/Dia, Valor Acumulado, No Mês, KM no Mês, Custo/Km
 
-# Selecionar algumas colunas, criando um DF específico
+# Selecionar algumas colunas, criando um DataFrame específico
 #dFrame = pd.DataFrame(fExcel, columns = ['Data', 'KM', 'Combustível'])
 #print(dFrame)
 
@@ -24,6 +24,12 @@ print(dfCompleto['Data'].max()) # Data do último abastecimento
 
 # Agrupar os dados do Excel por Combustível, exibindo o valor total para cada combustível
 dfComb = pd.DataFrame(fExcel, columns = ['Combustível', 'Valor Abastecido'])
+
+# Adicionar uma nova coluna no dataframe para contar quantas vezes o carro foi abastecido com os
+# combustíveis agrupados
+dfComb.insert(len(dfComb.columns), 'Contagem', 1)
+print(dfComb)
+
 print('--- Abastecimentos agrupados por combustível ---')
 print(dfComb.groupby(['Combustível']).sum())
 
@@ -31,3 +37,7 @@ print(dfComb.groupby(['Combustível']).sum())
 print('--- Total de Abastecimentos em R$ ---')
 print(pd.DataFrame(fExcel, columns = ['Valor Abastecido']).sum())
 
+# Média de KM rodado entre os abastecimentos
+print('--- Média de KM rodado ---')
+dfRodado = pd.DataFrame(fExcel, columns = ['KM Rodado'])
+print(dfRodado.median())
