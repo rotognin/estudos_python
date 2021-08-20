@@ -67,7 +67,12 @@ class Application:
         self.entNome.focus_set()
 
     def excluirInfo(self):
-        pass # A ser desenvolvido...
+        iIndex = self.lbxLista.curselection()
+        if (iIndex == ()):
+            messagebox.showwarning('Atenção', 'É necessário selecionar um registro para exclusão.')
+            return
+
+        self.lbxLista.delete(iIndex)
 
     def limparCampos(self):
         self.entNome.delete(0, END)
@@ -81,6 +86,7 @@ root = Tk()
 tamanho, altura = root.winfo_screenwidth(), root.winfo_screenheight()
 root.geometry("%dx%d+0+0" % (tamanho, altura))
 root.configure(background = "#eee")
+root.title('Operações diversas')
 
 app = Application(root)
 app.criarTela()
