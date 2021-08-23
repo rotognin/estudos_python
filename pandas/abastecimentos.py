@@ -41,3 +41,16 @@ print(pd.DataFrame(fExcel, columns = ['Valor Abastecido']).sum())
 print('--- Média de KM rodado ---')
 dfRodado = pd.DataFrame(fExcel, columns = ['KM Rodado'])
 print(dfRodado.median())
+print('---------------------------------')
+
+# O menor e o maior preço de cada combustível abastecido
+dfPrecos = pd.DataFrame(fExcel, columns = ['Data', 'Combustível', 'Valor/Litro'])
+print('--- O valor mínimo de cada combustível abastecido ---')
+print(dfPrecos.groupby(['Combustível']).min())
+print('--- O valor máximo de cada combustível abastecido ---')
+print(dfPrecos.groupby(['Combustível']).max())
+
+# Quanto foi o maior Km rodado?
+dfRodado = pd.DataFrame(fExcel, columns = ['Data', 'KM Rodado'])
+print('--- Maior KM Rodado ---')
+print(dfRodado.loc[dfRodado['KM Rodado'].idxmax()])
