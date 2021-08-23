@@ -8,4 +8,6 @@ O próximo passo é fazer uma aplicação desktop com tkinter para ler o banco c
 
 No projeto "tkinter" estou estudando a criação de janelas e suas diversas possibilidades.
 
-Iniciando o estudo com Pandas, extraindo valores de uma tabela de abastecimentos em Excel e fazendo várias funções e seleções de dados.
+Estou fazendo alguns testes com Pandas, extraindo valores de uma tabela de abastecimentos em Excel e fazendo várias funções e seleções de dados.
+
+Iniciando um projeto com Django, onde o objetivo é criar um projeto com cadastro de Motoristas e Veículos para realizar viagens.
