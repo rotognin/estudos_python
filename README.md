@@ -10,4 +10,4 @@ No projeto "tkinter" estou estudando a criação de janelas e suas diversas poss
 
 Estou fazendo alguns testes com Pandas, extraindo valores de uma tabela de abastecimentos em Excel e fazendo várias funções e seleções de dados.
 
-Iniciando um projeto com Django, onde o objetivo é criar um projeto com cadastro de Motoristas e Veículos para realizar viagens.
+Iniciando um projeto com Django, onde o objetivo é criar um projeto com cadastro de Motoristas e Veículos para realizar viagens. Seguindo um tutorial em https://docs.djangoproject.com/en/3.2/intro/tutorial01/
