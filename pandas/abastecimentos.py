@@ -20,7 +20,9 @@ print(dfValor)
 print('---------------------------------')
 
 dfCompleto = pd.DataFrame(fExcel)
+print('--- Data do último abastecimento ---')
 print(dfCompleto['Data'].max()) # Data do último abastecimento
+#print(type(dfCompleto['Data'].max())) -> <class 'pandas._libs.tslibs.timestamps.Timestamp'>
 
 # Agrupar os dados do Excel por Combustível, exibindo o valor total para cada combustível
 dfComb = pd.DataFrame(fExcel, columns = ['Combustível', 'Valor Abastecido'])
@@ -50,7 +52,7 @@ print(dfPrecos.groupby(['Combustível']).min())
 print('--- O valor máximo de cada combustível abastecido ---')
 print(dfPrecos.groupby(['Combustível']).max())
 
-# Quanto foi o maior Km rodado?
+# Quando foi realizado o abastecimento com o maior Km rodado?
 dfRodado = pd.DataFrame(fExcel, columns = ['Data', 'KM Rodado'])
 print('--- Maior KM Rodado ---')
-print(dfRodado.loc[dfRodado['KM Rodado'].idxmax()])
+print(dfRodado[dfRodado['KM Rodado'] == dfRodado['KM Rodado'].max()])
